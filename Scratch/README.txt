@@ -24,10 +24,3 @@ video instructions: https://www.youtube.com/watch?v=x-6ruqmNS3o&ab_channel=DappU
 
 
 
-
- truffle migrate --reset
-
- truffle test
-
-
- REACT_APP_YOUTUBE_API_KEY=AIzaSyBpBXTmsGMO0Mwv7vXzX5ydyluOSsrY2wY
