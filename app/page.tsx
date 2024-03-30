@@ -1,31 +1,22 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Game from '../components/Game';
 import MusicPlayer from '../components/MusicPlayer';
-
-// Dynamically import WallpaperEngine with SSR disabled
-const WallpaperEngine = dynamic(() => import('../components/WallpaperEngine'), { ssr: false });
+import WallpaperEngine from '../components/WallpaperEngine';
 
 const Home: NextPage = () => {
-  const wallpapers = [
-    '/images/wallpapers/bigsur.png',
-    '/images/wallpapers/boardWalk_arcade.png',
-    '/images/wallpapers/coastal_banner.png',
-    '/images/wallpapers/santaCruz.png'
-  ];
-
-  const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentWallpaperIndex((currentIndex) => (currentIndex + 1) % wallpapers.length);
-    }, 5000); // Change image every 5 seconds
+    // As soon as this runs, we know it's the client
+    setIsClient(true);
+  }, []);
 
-    return () => clearInterval(timer);
-  }, [wallpapers.length]);
+  if (!isClient) {
+    return <div>Loading...</div>; // Or any other placeholder content
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -36,7 +27,7 @@ const Home: NextPage = () => {
 
       <Navigation />
       <main>
-        <WallpaperEngine currentWallpaper={wallpapers[currentWallpaperIndex]} />
+        <WallpaperEngine />
         <Game />
       </main>
       <MusicPlayer />
