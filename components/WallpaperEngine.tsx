@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const WallpaperEngine = () => {
+const WallpaperEngine: React.FC = () => {
   const wallpapers = [
     '/images/wallpapers/bigsur.png',
     '/images/wallpapers/boardWalk_arcade.png',
@@ -8,7 +8,7 @@ const WallpaperEngine = () => {
     '/images/wallpapers/santaCruz.png'
   ];
 
-  const [currentWallpaper, setCurrentWallpaper] = useState(0);
+  const [currentWallpaper, setCurrentWallpaper] = useState<number>(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
