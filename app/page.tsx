@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Navigation from '../components/Navigation';
-import WallpaperEngine from '../components/WallpaperEngine';
 import Game from '../components/Game';
 import MusicPlayer from '../components/MusicPlayer';
+
+const WallpaperEngine = dynamic(() => import('../components/WallpaperEngine'), { ssr: false });
 
 const Home: NextPage = () => {
   return (
