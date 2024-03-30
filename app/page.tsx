@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 import Game from '../components/Game';
 import MusicPlayer from '../components/MusicPlayer';
 
+// Dynamically import WallpaperEngine with SSR disabled
 const WallpaperEngine = dynamic(() => import('../components/WallpaperEngine'), { ssr: false });
 
 const Home: NextPage = () => {
