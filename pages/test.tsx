@@ -23,7 +23,15 @@ const TestPage: React.FC = () => {
         <h1 className="text-3xl font-bold mb-4">Blockchain Technology Playground</h1>
         
         {/* Blockchain Tools List */}
-        {/* ...existing list rendering... */}
+        <ul className="list-disc pl-5">
+          {blockchainTools.map((tool, index) => (
+            <li key={index} className="mb-2">
+              <a href={tool.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
+                {tool.name} - {tool.description}
+              </a>
+            </li>
+          ))}
+        </ul>
 
         {/* Implementation Considerations Section */}
         <section className="my-8">
