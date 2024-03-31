@@ -17,12 +17,11 @@ const VisionPage: React.FC = () => {
           alt="Coastal Banner Wallpaper"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
           <main className="p-4 text-center">
             <h1 className="text-5xl font-bold mb-4">Our Vision</h1>
             {/* Placeholder or actual content for the vision page goes here */}
           </main>
-          {/* Footer or additional components can go here */}
         </div>
       </div>
     </div>
