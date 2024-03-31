@@ -35,11 +35,8 @@ const TestPage: React.FC = () => {
 
         {/* Implementation Considerations Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-semibold mb-3">Implementation Considerations</h2>
-          <p>Some of these services might require you to sign up and obtain an API key.</p>
-          <p>Be aware of Cross-Origin Resource Sharing (CORS) policies when making API requests from the client side.</p>
-          <p>For secure API key usage and overcoming CORS, consider using serverless functions in Vercel or similar platforms.</p>
-          <p>If using libraries like Web3.js or Ethers.js in a React project, you might want to create custom hooks for reusability and cleaner code.</p>
+          <h2 className="text-2xl font-semibold mb-3">Test Page Capabilities</h2>
+          <p>In the Netsoul Test Playground, you can control API keys, ease fetching from different blockchain tools, and integrate these capabilities into our game environment. These features are akin to video game skills or equipable items, enriching the interactive experience of Netsoul's universe.</p>
         </section>
 
         {/* Earning Retro Section */}
