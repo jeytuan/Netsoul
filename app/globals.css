@@ -48,4 +48,11 @@ body {
 .player-avatar, .boss-sprite {
   cursor: pointer; /* If they are interactive */
 }
+
+
 /* Add more styles as needed */
+@media (max-width: 600px) {
+  .vision-page h1 {
+    font-size: 3xl; /* Adjust the size as needed */
+  }
+}
