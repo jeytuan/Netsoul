@@ -1,11 +1,41 @@
+import React, { useState } from 'react';
+
 const Game: React.FC = () => {
-    return (
-      <div>
-        {/* Placeholder content for Game component */}
-        <h2>Game Component</h2>
-      </div>
-    );
+  const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 }); // Initial player position
+
+  // Placeholder function for attacking the boss
+  const attackBoss = () => {
+    console.log('Attacking the boss!');
+    // Implement attack logic here
   };
-  
-  export default Game;
-  
+
+  return (
+    <div className="game-container">
+      {/* Grid */}
+      <img src="/images/game/platforms/Grid.png" alt="Game Grid" className="game-grid" />
+
+      {/* Player */}
+      <img 
+        src="/images/game/players/basicSprite2.png" 
+        alt="Player Avatar" 
+        className="player-avatar" 
+        style={{ left: `${playerPosition.x}px`, top: `${playerPosition.y}px` }} 
+      />
+
+      {/* Boss */}
+      <img 
+        src="/images/game/bosses/Solana.png" 
+        alt="Boss Sprite" 
+        className="boss-sprite" 
+        onClick={attackBoss}
+      />
+
+      {/* Game Actions */}
+      <div className="game-actions">
+        <button onClick={attackBoss}>Attack Boss</button>
+      </div>
+    </div>
+  );
+};
+
+export default Game;
