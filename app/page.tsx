@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Navigation from '../components/Navigation';
-import Game from '../components/Game';
 import MusicPlayer from '../components/MusicPlayer';
 import WallpaperEngine from '../components/WallpaperEngine';
+
+// Dynamically import Game with SSR disabled
+const Game = dynamic(() => import('../components/Game'), { ssr: false });
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +19,7 @@ const Home: NextPage = () => {
       <Navigation />
       <main>
         <WallpaperEngine />
-        <Game />
+        <Game />  {/* Dynamically imported Game component */}
       </main>
       <MusicPlayer />
     </div>

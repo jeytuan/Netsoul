@@ -35,3 +35,17 @@ body {
 }
 
 /* You can add more custom CSS or utilities here */
+
+
+.game-container {
+  position: relative;
+  width: 100%; /* Adjust as needed */
+  height: 600px; /* Adjust as needed */
+}
+.game-grid, .player-avatar, .boss-sprite {
+  position: absolute;
+}
+.player-avatar, .boss-sprite {
+  cursor: pointer; /* If they are interactive */
+}
+/* Add more styles as needed */
