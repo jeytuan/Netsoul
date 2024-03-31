@@ -36,7 +36,8 @@ const TestPage: React.FC = () => {
         {/* Test Page Capabilities */}
         <section className="my-8">
           <h2 className="text-2xl font-semibold mb-3">Test Page Capabilities</h2>
-          <p>In the Netsoul Test Playground, you can control API keys, ease fetching from different blockchain tools, and integrate these capabilities into our game environment. These features are akin to video game skills or equipable items, enriching the interactive experience of Netsoul&apos;s universe.</p>
+          <p>In the Netsoul Test Playground, you can control API keys, ease fetching from different blockchain tools, and integrate these capabilities into our game environment.</p>
+          <p>These features are akin to video game skills or equipable items, enriching the interactive experience of Netsoul&apos;s universe.</p>
         </section>
 
         {/* Earning Retro Section */}
