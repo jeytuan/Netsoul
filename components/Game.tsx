@@ -12,10 +12,10 @@ const Game: React.FC = () => {
   return (
     <div className="game-container">
       {/* Grid */}
-      <img src="/images/game/platforms/Grid.png" alt="Game Grid" className="game-grid" />
+      <Image src="/images/game/platforms/Grid.png" alt="Game Grid" className="game-grid" />
 
       {/* Player */}
-      <img 
+      <Image 
         src="/images/game/players/basicSprite2.png" 
         alt="Player Avatar" 
         className="player-avatar" 
@@ -23,7 +23,7 @@ const Game: React.FC = () => {
       />
 
       {/* Boss */}
-      <img 
+      <Image 
         src="/images/game/bosses/Solana.png" 
         alt="Boss Sprite" 
         className="boss-sprite" 

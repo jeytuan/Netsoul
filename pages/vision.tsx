@@ -22,7 +22,7 @@ const VisionPage: React.FC = () => {
           <main className="p-4 text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6">Embark on a Netsoul Odyssey</h1>
             <p className="text-lg mb-4">
-              Netsoul is not just a game; it's a portal to a universe where adventure and learning merge, guiding you through a surreal journey across the vast expanse of cyberspace.
+              Netsoul is not just a game; it&apos;s a portal to a universe where adventure and learning merge, guiding you through a surreal journey across the vast expanse of cyberspace.
             </p>
 
             <section className="mb-6">
