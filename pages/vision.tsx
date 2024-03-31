@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Head from 'next/head';
 import Navigation from '../components/Navigation';
 
@@ -12,7 +13,7 @@ const VisionPage: React.FC = () => {
 
       {/* Wallpaper Section */}
       <div className="relative w-full min-h-screen">
-        <img
+        <Image
           src="/images/wallpapers/coastal_banner.png"
           alt="Coastal Banner Wallpaper"
           className="w-full h-full object-cover"
@@ -54,7 +55,7 @@ const VisionPage: React.FC = () => {
 
             {/* Lab Research Graphic */}
             <div className="mb-6">
-              <img
+              <Image
                 src="/images/wallpapers/lab_research.png"
                 alt="Lab Research"
                 className="mx-auto"
