@@ -58,19 +58,28 @@ body {
 }
 
 
-/* vision-page.css */
-.bg-opacity-50 { /* Adjusts the opacity of the background */
-  background-color: rgba(0, 0, 0, 0.5);
+/* Custom Styles for Vision Page */
+.vision-main {
+  padding: 2rem; /* Adjust as needed */
+  max-width: 1200px; /* Adjust as needed */
+  margin: auto;
 }
 
-.space-y-12 > * + * { /* Provides more vertical space between elements */
-  margin-top: 3rem; /* Adjust as needed */
+.vision-section {
+  margin-bottom: 3rem; /* Consistent spacing between sections */
 }
 
-.text-6xl { /* Larger text for main heading */
-  font-size: 3.75rem; /* Adjust as needed */
+.vision-heading {
+  font-size: 2.5rem; /* Adjust font size for headings */
+  margin-bottom: 1rem; /* Space between heading and text */
 }
 
-.text-xl { /* Larger text for paragraphs */
-  font-size: 1.25rem; /* Adjust as needed */
+.vision-text {
+  font-size: 1.1rem; /* Adjust font size for text */
+}
+
+@media (max-width: 600px) {
+  .vision-heading {
+    font-size: 2rem; /* Smaller font size for mobile */
+  }
 }
