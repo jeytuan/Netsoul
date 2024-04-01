@@ -56,3 +56,21 @@ body {
     font-size: 3xl; /* Adjust the size as needed */
   }
 }
+
+
+/* vision-page.css */
+.bg-opacity-50 { /* Adjusts the opacity of the background */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.space-y-12 > * + * { /* Provides more vertical space between elements */
+  margin-top: 3rem; /* Adjust as needed */
+}
+
+.text-6xl { /* Larger text for main heading */
+  font-size: 3.75rem; /* Adjust as needed */
+}
+
+.text-xl { /* Larger text for paragraphs */
+  font-size: 1.25rem; /* Adjust as needed */
+}
