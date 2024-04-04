@@ -55,17 +55,6 @@ const VisionPage: React.FC = () => {
               </p>
             </section>
 
-            <div className="my-10">
-              <Image
-                src="/images/wallpapers/lab_research.png"
-                alt="Lab Research"
-                layout='responsive'
-                width={800}
-                height={450}
-                className="mx-auto rounded-lg shadow-lg"
-              />
-            </div>
-
             <section className="mb-10">
               <h2 className="text-4xl font-bold mb-4">Customize Your Avatar</h2>
               <p className="text-lg">
