@@ -9,28 +9,28 @@ const Navigation = () => {
           <div>
             <ul className="flex space-x-4">
               <li>
-                <Link href="/">
-                  <a className="text-gray-300 hover:text-white">Home</a>
+                <Link href="/" className="text-gray-300 hover:text-white">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/test">
-                  <a className="text-gray-300 hover:text-white">Test</a>
+                <Link href="/test" className="text-gray-300 hover:text-white">
+                  Test
                 </Link>
               </li>
               <li>
-                <Link href="/vision">
-                  <a className="text-gray-300 hover:text-white">Vision</a>
+                <Link href="/vision" className="text-gray-300 hover:text-white">
+                  Vision
                 </Link>
               </li>
               <li>
-                <Link href="/join">
-                  <a className="text-gray-300 hover:text-white">Join</a>
+                <Link href="/join" className="text-gray-300 hover:text-white">
+                  Join
                 </Link>
               </li>
               <li>
-                <Link href="/support">
-                  <a className="text-gray-300 hover:text-white">Support</a>
+                <Link href="/support" className="text-gray-300 hover:text-white">
+                  Support
                 </Link>
               </li>
             </ul>
@@ -38,7 +38,7 @@ const Navigation = () => {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navigation

@@ -13,12 +13,13 @@ const Game: React.FC = () => {
   return (
     <div className="game-container">
       {/* Grid */}
-      <Image src="/images/game/platforms/Grid.png" alt="Game Grid" className="game-grid" />
+      <Image src="/images/game/platforms/Grid.png" fill={true} alt="Game Grid" className="game-grid" />
 
       {/* Player */}
       <Image 
         src="/images/game/players/basicSprite2.png" 
         alt="Player Avatar" 
+        fill={true}
         className="player-avatar" 
         style={{ left: `${playerPosition.x}px`, top: `${playerPosition.y}px` }} 
       />
@@ -26,8 +27,10 @@ const Game: React.FC = () => {
       {/* Boss */}
       <Image 
         src="/images/game/bosses/Solana.png" 
+        fill={true}
         alt="Boss Sprite" 
         className="boss-sprite" 
+        
         onClick={attackBoss}
       />
 
