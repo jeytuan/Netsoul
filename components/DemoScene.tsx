@@ -36,17 +36,17 @@ const DemoScene: React.FC = () => {
             gridPlane.material = gridMaterial;
 
             // Sprite Managers
-            const spriteManagerSKALE = new BABYLON.SpriteManager("spriteManagerSKALE", "/images/game/bosses/SKALE.png", 1, { width: 64, height: 64 }, scene);
-            const spriteManagerTRON = new BABYLON.SpriteManager("spriteManagerTRON", "/images/game/bosses/TRON.png", 1, { width: 64, height: 64 }, scene);
+            const spriteManagerSKALE = new BABYLON.SpriteManager("spriteManagerSKALE", "/images/game/bosses/SKALE.png", 2, { width: 64, height: 64 }, scene);
+            const spriteManagerTRON = new BABYLON.SpriteManager("spriteManagerTRON", "/images/game/bosses/TRON.png", 2, { width: 64, height: 64 }, scene);
 
             // Create sprites
             const spriteSKALE = new BABYLON.Sprite("spriteSKALE", spriteManagerSKALE);
-            spriteSKALE.position = new BABYLON.Vector3(0, 0, 0); // Position at (2,2) on the grid
-            spriteSKALE.size = 1; // Set sprite size
+            spriteSKALE.position = new BABYLON.Vector3(-1, 0, 0.1); // Adjusted position
+            spriteSKALE.size = 50; // Set sprite size
 
             const spriteTRON = new BABYLON.Sprite("spriteTRON", spriteManagerTRON);
-            spriteTRON.position = new BABYLON.Vector3(3, 0, 0); // Position at (2,5) on the grid
-            spriteTRON.size = 1; // Set sprite size
+            spriteTRON.position = new BABYLON.Vector3(1, 0, 0.1); // Adjusted position
+            spriteTRON.size = 100; // Set sprite size
 
             engine.runRenderLoop(() => {
                 scene.render();
