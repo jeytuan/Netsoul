@@ -34,16 +34,17 @@ const DemoScene: React.FC = () => {
                 scene.render();
             });
 
+            // Resize event handler
+            const resizeEngine = () => engine.resize();
+            
             // Handle browser resize events
-            window.addEventListener('resize', () => {
-                engine.resize();
-            });
+            window.addEventListener('resize', resizeEngine);
 
             // Cleanup function on component unmount
             return () => {
                 scene.dispose();
                 engine.dispose();
-                window.removeEventListener('resize', engine.resize);
+                window.removeEventListener('resize', resizeEngine);
             };
         }
     }, []);
