@@ -5,8 +5,8 @@ import Navigation from '../components/Navigation';
 import MusicPlayer from '../components/MusicPlayer';
 import WallpaperEngine from '../components/WallpaperEngine';
 
-// Dynamically import BabylonScene with SSR disabled
-const BabylonScene = dynamic(() => import('../components/BabylonScene'), { ssr: false });
+// Dynamically import DemoScene with SSR disabled
+const DemoScene = dynamic(() => import('../components/DemoScene'), { ssr: false });
 
 const Home: NextPage = () => {
   return (
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       <Navigation />
       <main>
         <WallpaperEngine />
-        <BabylonScene />  {/* Dynamically imported BabylonScene component */}
+        <DemoScene />  {/* Dynamically imported DemoScene component */}
       </main>
       <MusicPlayer />
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as BABYLON from '@babylonjs/core';
 
-const BabylonScene: React.FC = () => {
+const DemoScene: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -23,15 +23,16 @@ const BabylonScene: React.FC = () => {
             });
 
             // Handle browser resize events
-            window.addEventListener('resize', () => {
+            const resizeListener = () => {
                 engine.resize();
-            });
+            };
+            window.addEventListener('resize', resizeListener);
 
             // Cleanup function on component unmount
             return () => {
                 scene.dispose();
                 engine.dispose();
-                window.removeEventListener('resize', engine.resize);
+                window.removeEventListener('resize', resizeListener);
             };
         }
     }, []);
@@ -39,4 +40,4 @@ const BabylonScene: React.FC = () => {
     return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
 };
 
-export default BabylonScene;
+export default DemoScene;
