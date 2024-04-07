@@ -17,9 +17,11 @@ const Home: NextPage = () => {
       </Head>
 
       <Navigation />
-      <main>
+      <main className="relative">
         <WallpaperEngine />
-        <DemoScene />  {/* Dynamically imported DemoScene component */}
+        <div id="phaser-game-container" className="absolute top-0 left-0 w-full h-full">
+          <DemoScene />  {/* Dynamically imported DemoScene component */}
+        </div>
       </main>
       <MusicPlayer />
     </div>

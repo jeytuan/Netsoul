@@ -1,73 +1,44 @@
-import React, { useEffect, useRef } from 'react';
-import * as BABYLON from '@babylonjs/core';
-import '@babylonjs/loaders';
-import '@babylonjs/core/Sprites'; // Import sprite support
+import React, { useEffect } from 'react';
+import Phaser from 'phaser';
 
 const DemoScene: React.FC = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
     useEffect(() => {
-        if (canvasRef.current) {
-            const engine = new BABYLON.Engine(canvasRef.current, true);
-            const scene = new BABYLON.Scene(engine);
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create
+            }
+        };
 
-            const camera = new BABYLON.UniversalCamera("Camera", new BABYLON.Vector3(0, 10, 0), scene);
-            camera.setTarget(BABYLON.Vector3.Zero());
-            camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
+        new Phaser.Game(config);
 
-            const adjustCamera = () => {
-                const aspect = engine.getRenderWidth() / engine.getRenderHeight();
-                camera.orthoTop = 3;
-                camera.orthoBottom = -3;
-                camera.orthoLeft = -3 * aspect;
-                camera.orthoRight = 3 * aspect;
-            };
+        function preload() {
+            this.load.image('grid', '/images/game/platforms/grid.png');
+            this.load.image('spriteSKALE', '/images/game/bosses/SKALE.png');
+            this.load.image('spriteTRON', '/images/game/bosses/TRON.png');
+        }
 
-            adjustCamera();
+        function create() {
+            // Add grid background
+            this.add.image(400, 300, 'grid').setScale(0.5);
 
-            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
-
-            const gridTexture = new BABYLON.Texture("/images/game/platforms/grid.png", scene);
-            const gridPlane = BABYLON.MeshBuilder.CreatePlane("gridPlane", { width: 6, height: 3 }, scene);
-            gridPlane.rotation.x = Math.PI / 2; 
-
-            const gridMaterial = new BABYLON.StandardMaterial("gridMat", scene);
-            gridMaterial.diffuseTexture = gridTexture;
-            gridPlane.material = gridMaterial;
-
-            // Sprite Managers
-            const spriteManagerSKALE = new BABYLON.SpriteManager("spriteManagerSKALE", "/images/game/bosses/SKALE.png", 2, { width: 64, height: 64 }, scene);
-            const spriteManagerTRON = new BABYLON.SpriteManager("spriteManagerTRON", "/images/game/bosses/TRON.png", 2, { width: 64, height: 64 }, scene);
-
-            // Create sprites
-            const spriteSKALE = new BABYLON.Sprite("spriteSKALE", spriteManagerSKALE);
-            spriteSKALE.position = new BABYLON.Vector3(-1, 0, 0.1); // Adjusted position
-            spriteSKALE.size = 50; // Set sprite size
-
-            const spriteTRON = new BABYLON.Sprite("spriteTRON", spriteManagerTRON);
-            spriteTRON.position = new BABYLON.Vector3(1, 0, 0.1); // Adjusted position
-            spriteTRON.size = 100; // Set sprite size
-
-            engine.runRenderLoop(() => {
-                scene.render();
-            });
-
-            const resizeEngine = () => {
-                engine.resize();
-                adjustCamera();
-            };
-
-            window.addEventListener('resize', resizeEngine);
-
-            return () => {
-                scene.dispose();
-                engine.dispose();
-                window.removeEventListener('resize', resizeEngine);
-            };
+            // Add sprites
+            this.add.image(350, 300, 'spriteSKALE').setScale(0.1); // Adjust scale as needed
+            this.add.image(450, 300, 'spriteTRON').setScale(0.2);  // Adjust scale as needed
         }
     }, []);
 
-    return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+    return <div id="phaser-game"></div>;
 };
 
 export default DemoScene;
