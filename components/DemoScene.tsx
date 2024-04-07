@@ -30,10 +30,12 @@ const DemoScene: React.FC = () => {
 
           const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-          const spriteSKALE = this.add.sprite(cellWidth * 4.5, cellHeight * 1.5 + yOffset, 'spriteSKALE').setScale(0.6);
+          // Adjusted Y position directly for SKALE
+          const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffset, 'spriteSKALE').setScale(0.6);
           spriteSKALE.setInteractive();
 
-          const spriteTRON = this.add.sprite(cellWidth * 1.5, cellHeight * 1.5 + yOffset, 'spriteTRON').setScale(0.25);
+          // Adjusted Y position for TRON
+          const spriteTRON = this.add.sprite(cellWidth * 1.5, (cellHeight * 1.5) + yOffset, 'spriteTRON').setScale(0.25);
           spriteTRON.setInteractive();
         }
       }
