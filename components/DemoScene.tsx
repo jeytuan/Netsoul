@@ -11,7 +11,7 @@ const DemoScene: React.FC = () => {
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 0 },
+          gravity: { y: 0, x: 0 }, // Include both x and y properties
           debug: false
         }
       },
@@ -24,19 +24,15 @@ const DemoScene: React.FC = () => {
     new Phaser.Game(config);
 
     function preload(this: Phaser.Scene) {
-      // Preload assets
       this.load.image('grid', '/images/game/platforms/grid.png');
       this.load.image('spriteSKALE', '/images/game/bosses/SKALE.png');
       this.load.image('spriteTRON', '/images/game/bosses/TRON.png');
     }
 
     function create(this: Phaser.Scene) {
-      // Create the game scene
-      const grid = this.add.image(400, 300, 'grid'); // Position centered
-      
-      // Adding sprites
-      const spriteSKALE = this.physics.add.image(200, 300, 'spriteSKALE').setScale(0.5);
-      const spriteTRON = this.physics.add.image(600, 300, 'spriteTRON').setScale(0.5);
+      this.add.image(400, 300, 'grid');
+      this.physics.add.image(200, 300, 'spriteSKALE').setScale(0.5);
+      this.physics.add.image(600, 300, 'spriteTRON').setScale(0.5);
     }
   }, []);
 
