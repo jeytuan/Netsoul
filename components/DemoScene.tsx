@@ -26,15 +26,15 @@ const DemoScene: React.FC = () => {
           const rows = 3;
           const cellWidth = this.scale.width / cols;
           const cellHeight = this.scale.height / rows;
-          const yOffset = -40; // Adjust Y position upward
+          const yOffset = -100; // Increase Y-offset to make the movement more noticeable
 
           const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-          // Adjusted Y position directly for SKALE
+          // SKALE sprite with increased Y-offset
           const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffset, 'spriteSKALE').setScale(0.6);
           spriteSKALE.setInteractive();
 
-          // Adjusted Y position for TRON
+          // TRON sprite with increased Y-offset
           const spriteTRON = this.add.sprite(cellWidth * 1.5, (cellHeight * 1.5) + yOffset, 'spriteTRON').setScale(0.25);
           spriteTRON.setInteractive();
         }
