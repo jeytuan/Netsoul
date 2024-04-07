@@ -57,6 +57,18 @@ body {
   }
 }
 
+/* Phaser Game Container */
+#phaser-game-container {
+  position: relative;
+  z-index: 10; /* Above WallpaperEngine, adjust as needed */
+}
+
+/* Phaser Game Canvas Style */
+#phaser-game-container canvas {
+  max-width: 100%; /* Ensures canvas does not exceed container width */
+  max-height: 100vh; /* Ensures canvas does not exceed viewport height */
+  object-fit: contain; /* Keeps aspect ratio while filling container */
+}
 
 /* Custom Styles for Vision Page */
 .vision-main {

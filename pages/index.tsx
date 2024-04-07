@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       <Navigation />
       <main className="relative">
         <WallpaperEngine />
-        <div id="phaser-game-container" className="absolute top-0 left-0 w-full h-full">
+        <div id="phaser-game-container" className="absolute inset-0 flex justify-center items-center">
           <DemoScene />  {/* Dynamically imported DemoScene component */}
         </div>
       </main>
