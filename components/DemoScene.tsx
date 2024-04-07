@@ -29,7 +29,7 @@ const DemoScene: React.FC = () => {
 
           const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-          const spriteSKALE = this.add.sprite(cellWidth * 4.5, cellHeight * 1.5, 'spriteSKALE').setScale(0.8);
+          const spriteSKALE = this.add.sprite(cellWidth * 4.5, cellHeight * 1.5, 'spriteSKALE').setScale(0.6);
           spriteSKALE.setInteractive();
 
           const spriteTRON = this.add.sprite(cellWidth * 1.5, cellHeight * 1.5, 'spriteTRON').setScale(0.25);
