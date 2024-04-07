@@ -22,7 +22,16 @@ const DemoScene: React.FC = () => {
           this.load.image('spriteTRON', '/images/game/bosses/TRON.png');
         },
         create: function (this: Phaser.Scene) {
-          // Create the game scene
+          // Add grid to the scene
+          this.add.image(400, 300, 'grid');
+
+          // Add SKALE sprite to the scene
+          const spriteSKALE = this.add.sprite(200, 300, 'spriteSKALE');
+          spriteSKALE.setInteractive(); // Makes the sprite interactive (optional)
+
+          // Add TRON sprite to the scene
+          const spriteTRON = this.add.sprite(600, 300, 'spriteTRON');
+          spriteTRON.setInteractive(); // Makes the sprite interactive (optional)
         }
       }
     };
