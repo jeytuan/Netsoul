@@ -5,9 +5,9 @@ const DemoScene: React.FC = () => {
   useEffect(() => {
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width: 800,
-      height: 600,
-      parent: 'phaser-game-container', // Make sure Phaser canvas is injected into the correct container
+      width: 1300, // Adjust as needed
+      height: 750, // Adjust as needed
+      parent: 'phaser-game-container',
       physics: {
         default: 'arcade',
         arcade: {
@@ -23,7 +23,10 @@ const DemoScene: React.FC = () => {
         },
         create: function (this: Phaser.Scene) {
           // Add grid to the scene
-          this.add.image(400, 300, 'grid');
+          const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0);
+          // Scale the grid to fit the game dimensions
+          grid.displayWidth = this.sys.canvas.width;
+          grid.displayHeight = this.sys.canvas.height;
 
           // Add SKALE sprite to the scene
           const spriteSKALE = this.add.sprite(200, 300, 'spriteSKALE');
