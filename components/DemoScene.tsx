@@ -30,6 +30,7 @@ const DemoScene: React.FC = () => {
 
           const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
+          // Correctly applying Y-adjustment to both sprites
           const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) - spriteYAdjustment, 'spriteSKALE').setScale(0.6);
           spriteSKALE.setInteractive();
 
