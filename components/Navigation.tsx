@@ -13,6 +13,8 @@ const Navigation = () => {
                   Home
                 </Link>
               </li>
+              {/*   Muted for now, since all these tabs are on the Net-soul.com splash page
+              
               <li>
                 <Link href="/test" className="text-gray-300 hover:text-white">
                   Test
@@ -32,7 +34,7 @@ const Navigation = () => {
                 <Link href="/support" className="text-gray-300 hover:text-white">
                   Support
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

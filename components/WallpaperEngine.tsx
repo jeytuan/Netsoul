@@ -1,5 +1,5 @@
 const WallpaperEngine: React.FC = () => {
-  const wallpaper = '/images/wallpapers/santaCruz.png'; // Example static image
+  const wallpaper = '/images/wallpapers/sunset_beach_stretched.png'; // Example static image
 
   return (
     <div className="relative w-full min-h-screen">

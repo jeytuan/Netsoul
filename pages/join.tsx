@@ -1,3 +1,5 @@
+// Muted and unused for now, since all this tab information is on the Net-soul.com splash page
+
 import Head from 'next/head';
 import Navigation from '../components/Navigation';
 
