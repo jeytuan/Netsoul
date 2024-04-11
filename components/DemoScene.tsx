@@ -29,12 +29,12 @@ const DemoScene: React.FC = () => {
           const rows = 3;
           const cellWidth = this.scale.width / cols;
           const cellHeight = this.scale.height / rows;
-
-          // Y-offset for SKALE
+          
+          // Adjust Y-offset for SKALE
           const yOffsetSKALE = -80; 
 
-          // Adjust Y-offset for TRON to align with SKALE and move down by 10px
-          const yOffsetTRON = yOffsetSKALE + 10;
+          // Adjust Y-offset for TRON to align with SKALE and move down by 20px
+          const yOffsetTRON = yOffsetSKALE + 20; // Further adjustment based on screenshot
 
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
