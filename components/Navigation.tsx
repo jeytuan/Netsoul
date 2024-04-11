@@ -9,9 +9,11 @@ const Navigation = () => {
           <div>
             <ul className="flex space-x-4">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-white">
-                  Home
+                {/* Update the href attribute to point to the main splash page */}
+                <Link href="https://net-soul.com">
+                  <a className="text-gray-300 hover:text-white">Home</a>
                 </Link>
+
               </li>
               {/*   Muted for now, since all these tabs are on the Net-soul.com splash page
               
