@@ -32,7 +32,7 @@ const DemoScene: React.FC = () => {
           
           // Adjust Y-offsets for SKALE and TRON
           const yOffsetSKALE = -100 + 20; // Increased by 20px for SKALE
-          const yOffsetTRON = -75 - 50; // Decreased by 50px for TRON
+          const yOffsetTRON = -75 - 30; // Decreased by 30px for TRON
 
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
