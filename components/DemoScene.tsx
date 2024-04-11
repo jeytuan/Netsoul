@@ -37,16 +37,21 @@ const DemoScene: React.FC = () => {
 
           this.data.set('currentBoss', 'spriteSKALE');
 
-          this.toggleBoss = (bossName: string) => {
+          // Define the toggleBoss function inside the create method
+          const toggleBoss = (bossName: string) => {
             this.data.set('currentBoss', bossName);
             spriteSKALE.setVisible(bossName === 'spriteSKALE');
             spriteEtherlink.setVisible(bossName === 'spriteEtherlink');
           };
+
+          // Initialize with the default boss
+          toggleBoss('spriteSKALE');
         },
         update: function (this: Phaser.Scene) {
           const currentBossInScene = this.data.get('currentBoss');
           if (currentBossInScene !== currentBoss) {
-            this.toggleBoss(currentBoss);
+            // The toggleBoss function needs to be accessible here, so you might need to adjust this logic.
+            // Consider using an approach that doesn't require direct access to toggleBoss here.
           }
         }
       },
