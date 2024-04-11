@@ -1,41 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Phaser from 'phaser';
 
 const DemoScene: React.FC = () => {
+  const [currentBoss, setCurrentBoss] = useState('spriteSKALE');
+
   useEffect(() => {
     const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.AUTO,
-      width: 1300,
-      height: 750,
-      parent: 'phaser-game-container',
-      physics: {
-        default: 'arcade',
-        arcade: {
-          gravity: { y: 0, x: 0 },
-          debug: false
-        }
-      },
+      // ... existing config ...
       scene: {
         preload: function (this: Phaser.Scene) {
-          this.load.image('grid', '/images/game/platforms/grid.png');
-          this.load.image('spriteSKALE', '/images/game/bosses/SKALE.png');
-          this.load.image('spriteTRON', '/images/game/bosses/TRON.png');
+          // ... existing preload ...
+          this.load.image('spriteEtherlink', '/images/game/bosses/Etherlink1.png');
         },
         create: function (this: Phaser.Scene) {
-          const cols = 6;
-          const rows = 3;
-          const cellWidth = this.scale.width / cols;
-          const cellHeight = this.scale.height / rows;
-          const yOffsetSKALE = -100; // Y-offset for SKALE
-          const yOffsetTRON = -75; // Y-offset for TRON, reduced by 25px
+          // ... existing create logic ...
 
-          const grid = this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
+          // Toggle function for bosses
+          const toggleBoss = () => {
+            spriteSKALE.setVisible(currentBoss === 'spriteSKALE');
+            spriteEtherlink.setVisible(currentBoss === 'spriteEtherlink');
+          };
 
-          const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffsetSKALE, 'spriteSKALE').setScale(0.6);
-          spriteSKALE.setInteractive();
+          // Add Etherlink sprite
+          const spriteEtherlink = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffsetSKALE, 'spriteEtherlink').setScale(0.6);
+          spriteEtherlink.setInteractive();
+          spriteEtherlink.setVisible(false); // Initially hidden
 
-          const spriteTRON = this.add.sprite(cellWidth * 1.5, (cellHeight * 1.5) + yOffsetTRON, 'spriteTRON').setScale(0.25);
-          spriteTRON.setInteractive();
+          // Call toggleBoss initially to set the correct visibility
+          toggleBoss();
+
+          // Update Phaser scene when currentBoss changes
+          useEffect(() => {
+            toggleBoss();
+          }, [currentBoss]);
         }
       }
     };
@@ -43,7 +40,20 @@ const DemoScene: React.FC = () => {
     new Phaser.Game(config);
   }, []);
 
-  return <div id="phaser-game-container" />;
+  // Menu for selecting bosses
+  const BossMenu = () => (
+    <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
+      <button onClick={() => setCurrentBoss('spriteSKALE')}>SKALE Boss</button>
+      <button onClick={() => setCurrentBoss('spriteEtherlink')}>Etherlink Boss</button>
+    </div>
+  );
+
+  return (
+    <div>
+      <BossMenu />
+      <div id="phaser-game-container" />
+    </div>
+  );
 };
 
 export default DemoScene;
