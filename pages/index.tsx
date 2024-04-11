@@ -10,7 +10,7 @@ const DemoScene = dynamic(() => import('../components/DemoScene'), { ssr: false 
 
 const Home: NextPage = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <Head>
         <title>Netsoul</title>
         <link rel="icon" href="/favicon.ico" />
@@ -28,9 +28,11 @@ const Home: NextPage = () => {
         </button>
       </div>
 
-      <main className="relative">
+      <main className="flex-1 relative overflow-hidden">
+        {/* Adjust the height of WallpaperEngine to your preference */}
         <WallpaperEngine />
-        <div id="phaser-game-container" className="absolute inset-0 flex justify-center items-center">
+        {/* Phaser game container fitting right under the wallpaper */}
+        <div id="phaser-game-container" className="flex justify-center items-center">
           <DemoScene />  {/* Dynamically imported DemoScene component */}
         </div>
       </main>
