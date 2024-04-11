@@ -29,15 +29,18 @@ const DemoScene: React.FC = () => {
           const rows = 3;
           const cellWidth = this.scale.width / cols;
           const cellHeight = this.scale.height / rows;
-          
-          // Adjust Y-offset for TRON
-          const yOffsetTRON = -75 - 30 + 20 + 15; // Additional 15px downward adjustment
+
+          // Y-offset for SKALE
+          const yOffsetSKALE = -80; 
+
+          // Adjust Y-offset for TRON to align with SKALE and move down by 10px
+          const yOffsetTRON = yOffsetSKALE + 10;
 
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
           const spriteTRON = this.add.sprite(cellWidth * 1.5, (cellHeight * 1.5) + yOffsetTRON, 'spriteTRON').setScale(0.25 * 1.2).setInteractive();
-          const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) - 80, 'spriteSKALE').setScale(0.6).setInteractive().setVisible(currentBoss === 'spriteSKALE');
-          const spriteEtherlink = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) - 80, 'spriteEtherlink').setScale(0.6).setInteractive().setVisible(currentBoss === 'spriteEtherlink');
+          const spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffsetSKALE, 'spriteSKALE').setScale(0.6).setInteractive().setVisible(currentBoss === 'spriteSKALE');
+          const spriteEtherlink = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffsetSKALE, 'spriteEtherlink').setScale(0.6).setInteractive().setVisible(currentBoss === 'spriteEtherlink');
 
           this.data.set('currentBoss', currentBoss);
         },
