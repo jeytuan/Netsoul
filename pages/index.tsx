@@ -17,6 +17,17 @@ const Home: NextPage = () => {
       </Head>
 
       <Navigation />
+
+      {/* Login and Logout buttons */}
+      <div className="p-4">
+        <button onClick={() => window.location.href = '/api/auth/login'} className="mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Log In
+        </button>
+        <button onClick={() => window.location.href = '/api/auth/logout'} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Log Out
+        </button>
+      </div>
+
       <main className="relative">
         <WallpaperEngine />
         <div id="phaser-game-container" className="absolute inset-0 flex justify-center items-center">
