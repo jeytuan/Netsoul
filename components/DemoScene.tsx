@@ -13,7 +13,7 @@ const DemoScene: React.FC = () => {
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 0 },
+          gravity: { y: 0, x: 0 },
           debug: false,
         },
       },
@@ -33,22 +33,22 @@ const DemoScene: React.FC = () => {
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
           const spriteSKALE = this.add.sprite(cellWidth * 4.5, cellHeight * 1.5, 'spriteSKALE').setScale(0.6).setInteractive();
-          const spriteTRON = this.add.sprite(cellWidth * 1.5, cellHeight * 1.5, 'spriteTRON').setScale(0.25).setInteractive();
           const spriteEtherlink = this.add.sprite(cellWidth * 4.5, cellHeight * 1.5, 'spriteEtherlink').setScale(0.6).setInteractive().setVisible(false);
 
-          this.currentBoss = 'spriteSKALE';
+          this.data.set('currentBoss', 'spriteSKALE');
 
           this.toggleBoss = (bossName: string) => {
-            this.currentBoss = bossName;
+            this.data.set('currentBoss', bossName);
             spriteSKALE.setVisible(bossName === 'spriteSKALE');
             spriteEtherlink.setVisible(bossName === 'spriteEtherlink');
           };
         },
         update: function (this: Phaser.Scene) {
-          if (this.currentBoss !== currentBoss) {
+          const currentBossInScene = this.data.get('currentBoss');
+          if (currentBossInScene !== currentBoss) {
             this.toggleBoss(currentBoss);
           }
-        },
+        }
       },
     });
 
