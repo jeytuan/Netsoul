@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "functions": {
+      "api/my-edge-function.js": {
+        "runtime": "edge",
+        "maxDuration": 30
+      }
+    }
+  }
+  
