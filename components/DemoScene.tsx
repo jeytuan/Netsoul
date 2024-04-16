@@ -22,7 +22,7 @@ const DemoScene: React.FC = () => {
           this.load.image('grid', '/images/game/platforms/grid.png');
           this.load.image('spriteSKALE', '/images/game/bosses/SKALE.png');
           this.load.image('spriteTRON', '/images/game/bosses/TRON.png');
-          this.load.image('spriteEtherlink', '/images/game/bosses/Etherlink1.png');
+          this.load.image('spriteEtherlink', '/images/game/bosses/Etherlink1_front.png');
         },
         create: function (this: Phaser.Scene) {
           const cols = 6;
