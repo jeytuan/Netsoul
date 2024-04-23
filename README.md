@@ -129,12 +129,9 @@ Meet the driving forces behind Netsoul:
 
 
 
-
 ## Narrative for the Novel Use Case on Etherlink
-For the narrative aspect, you can spin the story around how your MEV Plant contributes to a more transparent and equitable gaming economy within the blockchain space. Perhaps the quests could lead to real impact, like burning a portion of MEV to offset gas fees across the network or fund public goods within the game ecosystem.
+As Netsoul concepts, MEV Plant contributes to a more transparent and equitable gaming economy within the blockchain space. In the near future quests could lead to real impact, like burning a portion of MEV to offset gas fees across the network or fund public goods within the game ecosystem.
 
-You might also consider how your game can reflect real-world blockchain dynamics and educate players about MEV and its role in blockchain networks, incentivizing players to take part in healthy network behaviors.
+We will also consider how Netsoul can reflect real-world blockchain dynamics and educate players about MEV and its role in blockchain networks, incentivizing players to take part in healthy network behaviors.
 
-Remember, it's crucial to address how your project stands out from typical use cases like DEXes and marketplaces. Lean into the gaming aspect, which is a fresh frontier for blockchain, and use that to distinguish your application.
-
-Good luck with your hackathon submission! Your project seems to be shaping up into something quite innovative. If you need any more assistance or insights, feel free to reach out!
+At Netsoul we lean into the gaming aspect to distinguish our application as a fresh frontier for pushing blockchain cutting edge features to its potential.
