@@ -1,6 +1,14 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navigation = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Implement logout logic here
+    router.push('/'); // Redirect to the home page
+  };
+
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto">
@@ -8,41 +16,29 @@ const Navigation = () => {
           <div className="text-white text-xl">Netsoul</div>
           <div>
             <ul className="flex space-x-4">
-              <li>
-                {/* Update the href attribute to point to the main splash page */}
-                <Link href="https://net-soul.com">
-                  <a className="text-gray-300 hover:text-white">Home</a>
-                </Link>
-
-              </li>
-              {/*   Muted for now, since all these tabs are on the Net-soul.com splash page
-              
-              <li>
-                <Link href="/test" className="text-gray-300 hover:text-white">
-                  Test
-                </Link>
+            <li>
+                {/* Change the Link component to a standard anchor tag */}
+                <a href="https://www.net-soul.com/" className="text-gray-300 hover:text-white">
+                  Home
+                </a>
               </li>
               <li>
-                <Link href="/vision" className="text-gray-300 hover:text-white">
-                  Vision
+                <Link href="/TestNet">
+                  <span className="cursor-pointer text-gray-300 hover:text-white">TestNet</span>
                 </Link>
               </li>
+              {/* Other navigation items... */}
               <li>
-                <Link href="/join" className="text-gray-300 hover:text-white">
-                  Join
-                </Link>
+                <span onClick={handleLogout} className="cursor-pointer text-gray-300 hover:text-white">
+                  Log Out
+                </span>
               </li>
-              <li>
-                <Link href="/support" className="text-gray-300 hover:text-white">
-                  Support
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>
       </div>
     </nav>
   );
-}
+};
 
-export default Navigation
+export default Navigation;

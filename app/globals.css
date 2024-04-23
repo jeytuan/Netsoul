@@ -32,66 +32,126 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  /* If text-wrap: balance is not recognized, consider using a different property or remove this utility. */
 }
 
-/* You can add more custom CSS or utilities here */
-
-
+/* Game-specific styles */
 .game-container {
   position: relative;
-  width: 100%; /* Adjust as needed */
-  height: 600px; /* Adjust as needed */
+  width: 100%; /* Full width of the parent */
+  height: 600px; /* Height adjusted for game display */
 }
+
 .game-grid, .player-avatar, .boss-sprite {
   position: absolute;
 }
+
 .player-avatar, .boss-sprite {
-  cursor: pointer; /* If they are interactive */
+  cursor: pointer; /* Indicates interactivity */
 }
 
-
-/* Add more styles as needed */
+/* Responsive adjustments for vision page */
 @media (max-width: 600px) {
   .vision-page h1 {
-    font-size: 3xl; /* Adjust the size as needed */
+    font-size: 1.75rem; /* Size adjusted for mobile view */
   }
 }
 
-/* Phaser Game Container */
+/* Phaser Game styles */
 #phaser-game-container {
   position: relative;
-  z-index: 10; /* Above WallpaperEngine, adjust as needed */
+  z-index: 10; /* Above other elements as needed */
 }
 
-/* Phaser Game Canvas Style */
 #phaser-game-container canvas {
-  max-width: 100%; /* Ensures canvas does not exceed container width */
-  max-height: 100vh; /* Ensures canvas does not exceed viewport height */
-  object-fit: contain; /* Keeps aspect ratio while filling container */
+  max-width: 100%; /* Ensures canvas fits the container */
+  max-height: 100vh; /* Fits within the viewport height */
+  object-fit: contain; /* Maintains aspect ratio */
 }
 
-/* Custom Styles for Vision Page */
+/* Vision page styles */
 .vision-main {
-  padding: 2rem; /* Adjust as needed */
-  max-width: 1200px; /* Adjust as needed */
+  padding: 2rem;
+  max-width: 1200px;
   margin: auto;
 }
 
 .vision-section {
-  margin-bottom: 3rem; /* Consistent spacing between sections */
+  margin-bottom: 3rem;
 }
 
 .vision-heading {
-  font-size: 2.5rem; /* Adjust font size for headings */
-  margin-bottom: 1rem; /* Space between heading and text */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .vision-text {
-  font-size: 1.1rem; /* Adjust font size for text */
+  font-size: 1.1rem;
 }
 
+/* Adjustments for vision page on mobile */
 @media (max-width: 600px) {
   .vision-heading {
-    font-size: 2rem; /* Smaller font size for mobile */
+    font-size: 2rem;
   }
 }
+
+/* Warp Menu styles */
+.warp-menu {
+  position: absolute;
+  top: 10%; /* Position adjusted for your layout */
+  left: 10%;
+  width: 200px; /* Width as per design requirements */
+  background: #fff; /* Background color */
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure visibility above other elements */
+  color: #000; /* Set text color */
+}
+
+.warp-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.warp-menu li {
+  padding: 0.5rem 0;
+  cursor: pointer;
+  text-align: center;
+  color: #000; /* Set text color for visibility */
+}
+
+.warp-menu li:hover {
+  background-color: #e0e0e0; /* Hover effect color change */
+}
+
+.warp-menu li.research-item {
+  cursor: not-allowed; /* Not selectable indicated by cursor style */
+  color: #777; /* Grayed out to show it's not available yet */
+}
+
+.warp-menu li.research-item:hover {
+  background-color: transparent; /* No hover effect for these items */
+}
+
+.warp-menu button {
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Specific styles for research heading */
+.warp-menu li.research-heading {
+  font-size: 1.25rem; /* Larger font size */
+  font-weight: bold; /* Bold font */
+  color: #333; /* Darker color for contrast */
+  margin-bottom: 0.5rem; /* Space before the list starts */
+}
+

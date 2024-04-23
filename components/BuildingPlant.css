@@ -1,0 +1,59 @@
+.mev-plant-ui {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+  position: absolute;
+  top: 10%; /* Adjust as needed */
+  left: 10%; /* Adjust as needed */
+  width: auto;
+  z-index: 1000; /* Above game canvas */
+}
+
+.mev-plant-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #008080; /* Make the title stand out */
+}
+
+.mev-section {
+  margin-bottom: 20px;
+}
+
+.mev-section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.mev-section-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.mev-plant-close {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.mev-plant-close button,
+.launch-node-button { /* Style for both close and launch node buttons */
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Add font-size for consistency */
+  margin-top: 10px; /* Optional: to give some space above the button */
+}
+
+.mev-plant-close button:hover,
+.launch-node-button:hover { /* Hover effect for both buttons */
+  background-color: #0056b3;
+}
+
+/* Additional styles can go here */
