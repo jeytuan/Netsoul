@@ -17,7 +17,7 @@ In this project, we explore the advanced features of Etherlink by incorporating 
 
 A brief video (max 3 minutes) showcasing the functionality and user interface of the Netsoul platform on Etherlink.
 
-[Video Link](#)
+[https://youtu.be/jfJIDQ-5eZE](#)
 
 ## Architecture and Technologies Used
 
