@@ -1,6 +1,6 @@
 // WallpaperEngine.tsx
 const WallpaperEngine: React.FC = () => {
-  const wallpaper = '/images/wallpapers/sunset_beach_stretched.png'; // Example static image
+  const wallpaper = '/images/promo/prealpha.png'; // Example static image
 
   return (
     <div className="relative w-full" style={{ height: '350px' }}> {/* Set the height to 350px */}

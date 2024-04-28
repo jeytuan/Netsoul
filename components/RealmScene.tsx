@@ -5,10 +5,13 @@ import Phaser from 'phaser';
 import { WarpMenu } from './WarpMenu';
 import { BuildingPlant } from './BuildingPlant';
 import TestScene from './TestScene'; // Import the TestScene component
+import TestSuiteManager from './TestStudio/TestSuiteManager'; // Import TestSuiteManager
+
 
 const RealmScene = () => {
   const [warpMenuVisible, setWarpMenuVisible] = useState(false);
   const [buildingPlantVisible, setBuildingPlantVisible] = useState(false);
+  const [researchFacilityVisible, setResearchFacilityVisible] = useState(false);
 
   useEffect(() => {
     const config = {
@@ -37,6 +40,10 @@ const RealmScene = () => {
           const buildingPlantGlow = this.add.image(buildingPlantX, buildingPlantY, 'glow').setScale(0.5);
           buildingPlantGlow.setInteractive();
           buildingPlantGlow.on('pointerdown', () => setBuildingPlantVisible(true));
+
+          const researchFacilityGlow = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2 + 280, 'glow').setScale(0.5); // Adjust position as needed
+          researchFacilityGlow.setInteractive();
+          researchFacilityGlow.on('pointerdown' , () => setResearchFacilityVisible(true)); 
 
           this.tweens.add({
             targets: [warpGlow, buildingPlantGlow],
@@ -69,8 +76,10 @@ const RealmScene = () => {
       {warpMenuVisible && <WarpMenu isVisible={warpMenuVisible} onClose={() => setWarpMenuVisible(false)} />}
       {buildingPlantVisible && <BuildingPlant isVisible={buildingPlantVisible} onClose={() => setBuildingPlantVisible(false)} />}
 
-      {/* TestScene Component, which includes the terminal and debugging logs */}
-      <TestScene />
+
+
+      {/* TestSuiteManager component instead of TestScene */}
+      <TestSuiteManager />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -21,6 +21,7 @@ const TestScene = () => {
     'To get Testnet rewards from faucet.etherlink.com, create a Netsoul account and bind your Metamask wallet.',
   ]);
   const [command, setCommand] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const addLog = (log: string) => {
     setLogs(prevLogs => [...prevLogs, log]);
@@ -43,8 +44,6 @@ const TestScene = () => {
   const launchMEVNode = async () => {
     addLog("Launching MEV node...");
     // Here you would implement the logic for launching an MEV node.
-    // This could include sending a transaction to a smart contract, or sending a request to a backend service.
-    // For now, we will just simulate the action.
     addLog("MEV node launched successfully!");
   };
 
@@ -64,6 +63,7 @@ const TestScene = () => {
         addLog(`Unrecognized command: ${command}`);
     }
     setCommand('');
+    inputRef.current?.focus();
   }, [command]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -81,6 +81,7 @@ const TestScene = () => {
           <Prompt>
             <span>$</span>
             <input
+              ref={inputRef}
               type="text"
               placeholder="Type your command here"
               value={command}
@@ -109,12 +110,14 @@ const Container = styled.div`
 `;
 
 const Terminal = styled.div`
-  width: 400px;
-  height: 300px;
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
+  width: 600px;
+  height: 400px;
+  background-color: #1e1e1e;
+  color: #9cdcfe;
+  padding: 20px;
   overflow-y: auto;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
 `;
 
 const Log = styled.div`
@@ -137,7 +140,7 @@ const Prompt = styled.div`
 `;
 
 const DebuggingArea = styled.div`
-  width: 50%;
+  width: 100%;
   height: 300px;
 `;
 
