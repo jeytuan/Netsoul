@@ -1,5 +1,4 @@
 // src/services/oracleService.ts
-import fetch from 'node-fetch';
 
 // Oracle configuration
 const ORACLES = {
@@ -32,7 +31,9 @@ export const fetchOracleData = async (oracleType: 'CoinGecko' | 'Chainlink'): Pr
     const data = await response.json();
     return data; // You may want to format or process this data further before returning
   } catch (error) {
-    console.error(`fetchOracleData error with ${oracleType}:`, error);
-    throw error;
+    // It's important to ensure that the error is an instance of Error before trying to access its 'message' property
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    console.error(`fetchOracleData error with ${oracleType}:`, message);
+    throw new Error(message);
   }
 };

@@ -1,15 +1,22 @@
-# Netsoul on Etherlink: A Web3 Gaming Exploration
+# Netsoul w/ Etherlink & Gateway.fm
+: A Web3 Gaming Exploration
 
 ## Overview
 
-Netsoul is a pioneering platform that integrates with Etherlink to leverage the revolutionary capabilities of Account Abstraction and MEV optimization on the Netsoul platform. Our project harnesses the power of Etherlink's low-latency and low-fee environment to create a user experience that's not only efficient but also highly decentralized.
+Netsoul, the cross-chain gaming platform, has teamed up with Etherlink and Gateway.fm for an enhanced Web3 experience. By incorporating Gateway.fm's Presto Rollup, Netsoul aims to optimize the deployment of smart contracts across blockchains seamlessly.
 
 ## Project Summary
+
+Netsoul stands at the intersection of gaming and blockchain technology, offering a gamified environment to learn, interact, and explore various blockchain ecosystems. The integration with Gateway.fm's Presto Rollup and Oracle allows Netsoul to harness real-time data for advanced gaming scenarios and currency conversions.
 
 In this project, we explore the advanced features of Etherlink by incorporating Account Abstraction and mechanisms to mitigate and utilize Maximal Extractable Value (MEV) to promote a fairer, more equitable blockchain environment. Our platform is designed to reduce barriers to entry and enhance transparency, fostering a healthy competitive landscape in the blockchain ecosystem.
 
 ### Key Features
-- **Blockchain Interaction**: Our platform includes a sandbox terminal feature that allows users to directly interact with the Etherlink RPC and testnet links. This foundational functionality enables real-time testing and interaction within a controlled environment, demonstrating our commitment to providing a robust and user-centric blockchain experience.
+- **Blockchain Interaction**: Our platform includes a sandbox terminal feature that allows users to directly interact with the Etherlink RPC and testnet links. This foundational functionality enables real-time testing and interaction within a controlled environment, demonstrating our commitment to providing a robust and user-centric blockchain experience. Our platform now includes Gateway.fm alongside Etherlink, expanding our reach and capabilities within the blockchain space.
+
+- **Smart Contract Workshop**: Future plans include a dedicated workshop for users to create and deploy smart contracts, supported by Presto's Rollup feature for efficiency and scalability.
+
+- **Oracle Data Utilization**: We are refining our Oracle Integration Test to interact with CoinGecko and Chainlink, aiming to fetch crucial data like price changes and gas prices effectively.
 
 - **MEV Strategic Use**: We have started the frontend integration to interact with Etherlink’s MEV solutions. While full integration to distribute rewards back to the community is underway, this feature will continue to be developed to ensure a more balanced and less exploitative blockchain environment.
 
@@ -104,6 +111,8 @@ We invite contributors to join us in expanding the capabilities of Netsoul and e
 
 ### Planned Future Expansions
 - **Enhanced User Experience**: Leverages Etherlink’s core advantages—decentralization, low fees, and low latency—to deliver an exceptional user experience.
+- **Full Oracle Integration**: To provide accurate real-time data within the game, enhancing the overall user experience.
+- **Smart Contract Workshop**: A space for writing, deploying, and interacting with smart contracts, including features like syntax highlighting and code completion.
 - **Account Abstraction Implementation**: We plan to simplify user interactions by integrating Etherlink's Account Abstraction, making blockchain interactions more intuitive and seamless.
 - **Enhanced UI Features**: Development of additional UI components like advanced settings, dashboard updates, and interactive game elements.
 - **Authentication Improvements**: Incorporation of Auth0 for robust authentication mechanisms to enhance security and user management.

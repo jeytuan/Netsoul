@@ -90,7 +90,7 @@ const runSelectedTest = useCallback(async () => {
       break;
     case 'oracleIntegration':
       // Assuming testOracleIntegration is properly imported and implemented
-      const oracleTestResult = await testOracleIntegration('CoinGecko'); // or 'Chainlink', based on user selection
+      const oracleTestResult = await testOracleIntegration('CoinGecko', 'Etherlink');
       // Update the testResults state with the result of the oracle test
       setTestResults(prevResults => [
         ...prevResults,

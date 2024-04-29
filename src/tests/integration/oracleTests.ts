@@ -1,50 +1,61 @@
 // src/tests/unit/oracleTests.ts
 import { TestResult } from '../../types/types';
-import { fetchOracleData } from '../../services/oracleServices'; // Adjust the import path as necessary
+import { fetchOracleData } from '../../services/oracleServices';
 
-// Define what type of data you expect. This is a basic example; adjust according to actual data structure.
+// Assuming the oracle returns a data structure like this:
 interface OracleData {
-    price?: number; // Assuming this could be part of the data returned
-    ethereum?: {
-      usd: number;
-    };
+  ethereum?: {
+    usd: number;
+    usd_24h_change: number;
+  };
+  gasPrice?: number; // Gas price in GWEI for Chainlink or another oracle
 }
 
-// Move the dataIsValid function here, before its usage in testOracleIntegration
 const dataIsValid = (data: OracleData, oracleType: 'CoinGecko' | 'Chainlink'): boolean => {
+  // Implement your validation logic here
+  // For example, check if the data contains the expected properties
   if (oracleType === 'CoinGecko') {
-    return !!data.ethereum && typeof data.ethereum.usd === 'number';
+    return data.ethereum !== undefined && typeof data.ethereum.usd === 'number';
   } else if (oracleType === 'Chainlink') {
-    return typeof data.price === 'number' && data.price > 0;
+    // Replace with the validation logic for Chainlink oracle data
+    return data.gasPrice !== undefined && typeof data.gasPrice === 'number';
   }
+
+  // If the data doesn't meet your conditions, return false
   return false;
 };
 
-export const testOracleIntegration = async (oracleType: 'CoinGecko' | 'Chainlink'): Promise<TestResult> => {
+
+export const testOracleIntegration = async (
+  oracleType: 'CoinGecko' | 'Chainlink',
+  networkName: string
+): Promise<TestResult> => {
   try {
-    const data = await fetchOracleData(oracleType); // Pass oracleType to fetch data from specific oracle
+    const data = await fetchOracleData(oracleType);
     if (dataIsValid(data, oracleType)) {
+      const priceChange = data.ethereum?.usd_24h_change.toFixed(2);
+      const gasPrice = data.gasPrice;
       return {
-        name: `${oracleType} Integration Test`,
+        name: `${networkName} ${oracleType} Integration Test`,
         status: 'passed',
-        message: `${oracleType} oracle data fetched successfully.`,
+        message: `${networkName}: ${oracleType} oracle data fetched successfully. 24h Change: ${priceChange}%, Gas Price: ${gasPrice} GWEI`,
       };
     } else {
       return {
-        name: `${oracleType} Integration Test`,
+        name: `${networkName} ${oracleType} Integration Test`,
         status: 'failed',
-        message: `${oracleType} oracle data did not meet expected criteria.`,
+        message: `${networkName}: ${oracleType} oracle data did not meet expected criteria.`,
       };
     }
-  } catch (error: unknown) {
+  } catch (error) {
     let errorMessage = 'An unknown error occurred';
     if (error instanceof Error) {
       errorMessage = error.message;
     }
     return {
-      name: `${oracleType} Integration Test`,
+      name: `${networkName} ${oracleType} Integration Test`,
       status: 'failed',
-      message: `Error fetching data from ${oracleType} oracle: ${errorMessage}`,
+      message: `${networkName}: Error fetching data from ${oracleType} oracle: ${errorMessage}`,
     };
   }
 };
