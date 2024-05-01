@@ -1,80 +1,45 @@
 // BuildingPlant.tsx
 import React from 'react';
-import './BuildingPlant.css'; // Make sure to create a corresponding CSS file
+import './BuildingPlant.css'; // Retain CSS for styling within the BrowserView
 
-interface BuildingPlantProps {
-  isVisible: boolean;
-  onClose: () => void;
-}
-
-export const BuildingPlant: React.FC<BuildingPlantProps> = ({ isVisible, onClose }) => {
-  if (!isVisible) return null;
-
+const BuildingPlant = () => {
   // Placeholder function for launch MEV Node
   const handleLaunchNode = () => {
-    console.log('Placeholder function for MEV Node launch');
+    console.log('Launching MEV Node...');
   };
 
   return (
     <div className="mev-plant-ui">
-      <h2 className="mev-plant-title">MEV Plant</h2>
-      {/* MEV as a Resource Section */}
+      <h2>MEV Plant</h2>
       <section className="mev-section">
-        <h3 className="mev-section-title">MEV as a Resource</h3>
-        <p className="mev-section-description">
-          Discover or earn MEV through gameplay to use for upgrades and special access.
-        </p>
+        <h3>MEV as a Resource</h3>
+        <p>Discover or earn MEV through gameplay to use for upgrades and special access.</p>
       </section>
-    
-
-    
-      {/* Validator Nodes Section */}
       <section className="mev-section">
-        <h3 className="mev-section-title">Validator Nodes</h3>
-        <p className="mev-section-description">
-          Contribute to the network's security by setting up Validator Nodes.
-        </p>
+        <h3>Validator Nodes</h3>
+        <p>Contribute to network security by setting up Validator Nodes.</p>
       </section>
-
-      {/* MEV Redistribution Section */}
       <section className="mev-section">
-        <h3 className="mev-section-title">MEV Redistribution</h3>
-        <p className="mev-section-description">
-          Redistribute collected MEV back into the ecosystem to enhance community or earn rewards.
-        </p>
+        <h3>MEV Redistribution</h3>
+        <p>Redistribute collected MEV back into the ecosystem to enhance community or earn rewards.</p>
       </section>
-
-      {/* MEV Auctions Section */}
       <section className="mev-section">
-        <h3 className="mev-section-title">MEV Auctions</h3>
-        <p className="mev-section-description">
-          Participate in in-game auctions to bid for MEV, simulating transaction ordering.
-        </p>
+        <h3>MEV Auctions</h3>
+        <p>Participate in in-game auctions to bid for MEV, simulating transaction ordering.</p>
       </section>
-
-      {/* Transparency Quests Section */}
       <section className="mev-section">
-        <h3 className="mev-section-title">Transparency Quests</h3>
-        <p className="mev-section-description">
-          Uncover MEV-related strategies used by corrupt validators in quests for a healthier economy.
-        </p>
+        <h3>Transparency Quests</h3>
+        <p>Uncover MEV-related strategies used by corrupt validators in quests for a healthier economy.</p>
       </section>
-
-      {/* Close Button */}
-      <div className="mev-plant-close">
-        <button onClick={onClose}>Close MEV Plant</button>
-      </div>
-           {/* Launch MEV Node Section */}
-           <section className="mev-section">
-
-        <button onClick={handleLaunchNode} className="launch-node-button">
-          Launch MEV Node
-        </button>
-      </section>
-      
+      <button onClick={handleLaunchNode} className="launch-node-button">
+        Launch MEV Node
+      </button>
     </div>
   );
 };
+
+export default BuildingPlant;
+
 
 /**
  * Enhancing the MEV Plant ("BuildingPlant.tsx")

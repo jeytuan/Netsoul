@@ -1,21 +1,18 @@
+/* BuildingPlant.css */
 .mev-plant-ui {
-  background: #fff;
-  border-radius: 8px;
+  background: #212121;
+  color: #ffffff;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
   font-family: 'Arial', sans-serif;
-  position: absolute;
-  top: 10%; /* Adjust as needed */
-  left: 10%; /* Adjust as needed */
-  width: auto;
-  z-index: 1000; /* Above game canvas */
 }
 
 .mev-plant-title {
-  font-size: 32px;
-  font-weight: bold;
+  color: #1de9b6;
+  font-size: 24px;
   margin-bottom: 16px;
-  color: #008080; /* Make the title stand out */
 }
 
 .mev-section {
@@ -24,36 +21,27 @@
 
 .mev-section-title {
   font-size: 18px;
-  font-weight: bold;
-  color: #333;
+  color: #00b0ff;
+  margin-bottom: 8px;
 }
 
 .mev-section-description {
   font-size: 14px;
-  color: #666;
-  line-height: 1.4;
-}
-
-.mev-plant-close {
-  text-align: center;
-  padding-top: 10px;
+  line-height: 1.5;
 }
 
 .mev-plant-close button,
-.launch-node-button { /* Style for both close and launch node buttons */
-  padding: 8px 16px;
+.launch-node-button {
+  background: #00b0ff;
+  color: #fff;
+  padding: 10px 15px;
   border: none;
-  background-color: #007bff;
-  color: white;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px; /* Add font-size for consistency */
-  margin-top: 10px; /* Optional: to give some space above the button */
+  margin-top: 10px;
 }
 
 .mev-plant-close button:hover,
-.launch-node-button:hover { /* Hover effect for both buttons */
-  background-color: #0056b3;
+.launch-node-button:hover {
+  background: #0081cb;
 }
-
-/* Additional styles can go here */

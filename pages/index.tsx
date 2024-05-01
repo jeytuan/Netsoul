@@ -12,7 +12,7 @@ import React from 'react';
 const BattleScene = dynamic(() => import('../components/BattleScene'), { ssr: false });
 
 // Dynamically import RealmScene with SSR disabled
-const RealmScene = dynamic(() => import('../components/RealmScene'), { ssr: false });
+const RealmScene = dynamic(() => import('../components/New_RealmScene'), { ssr: false });
 
 const Home: NextPage = () => {
   const [activeScene, setActiveScene] = React.useState<string>('none');

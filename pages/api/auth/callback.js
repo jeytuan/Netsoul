@@ -1,5 +1,5 @@
 // pages/api/auth/callback.js
-import auth0 from '../../../utils/auth0';
+import auth0 from '../../../src/utils/auth0';
 
 export default async function callback(req, res) {
   try {

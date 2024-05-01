@@ -1,7 +1,7 @@
 // hooks/useTestSuite.ts
 
 import { useState, useCallback } from 'react';
-import { testingService } from '../services/TestingService'; // Assume you have this service
+import { testingService } from '../src/services/TestingService'; // Assume you have this service
 
 type TestSuiteStatus = 'idle' | 'running' | 'completed';
 

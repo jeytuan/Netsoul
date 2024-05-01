@@ -4,7 +4,7 @@ import Phaser from 'phaser';
 
 import { WarpMenu } from './WarpMenu';
 import { BuildingPlant } from './BuildingPlant';
-import TestScene from './TestScene'; // Import the TestScene component
+// import TestScene from './TestScene'; // Legacy Module
 import TestSuiteManager from './TestStudio/TestSuiteManager'; // Import TestSuiteManager
 
 
@@ -12,6 +12,8 @@ const RealmScene = () => {
   const [warpMenuVisible, setWarpMenuVisible] = useState(false);
   const [buildingPlantVisible, setBuildingPlantVisible] = useState(false);
   const [researchFacilityVisible, setResearchFacilityVisible] = useState(false);
+  // Add more state for additional nodes here
+
 
   useEffect(() => {
     const config = {
@@ -23,6 +25,8 @@ const RealmScene = () => {
         preload: function (this: Phaser.Scene) {
           this.load.image('island', 'images/game/platforms/island_concept.png');
           this.load.image('glow', 'images/game/effects/glow.png');
+           // Load other images for new nodes if needed
+
         },
         create: function (this: Phaser.Scene) {
           const island = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'island');
