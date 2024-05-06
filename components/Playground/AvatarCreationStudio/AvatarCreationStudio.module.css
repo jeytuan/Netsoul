@@ -1,0 +1,58 @@
+/* AvatarCreationStudio.module.css */
+.avatar-creation-studio {
+    background: #212121; /* Dark background */
+    color: #ffffff; /* Light text */
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .avatar-creation-studio h2 {
+    color: #1de9b6; /* Light green, similar to title in TestSuiteManager */
+    margin-bottom: 20px;
+  }
+  
+  .avatar-creation-studio form {
+    margin-bottom: 20px;
+  }
+  
+  .avatar-creation-studio label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .avatar-creation-studio input,
+  .avatar-creation-studio textarea {
+    background: #333; /* Dark input fields */
+    border: 1px solid #444; /* Slightly lighter border for visibility */
+    color: #fff; /* White text input */
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Adjust width to fit padding and borders */
+    box-sizing: border-box;
+  }
+  
+  .avatar-creation-studio button {
+    background: #00b0ff; /* Blue, similar to buttons in TestSuiteManager */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .avatar-creation-studio button:hover {
+    background: #0081cb; /* Darker blue on hover */
+  }
+  
+  .avatar-preview {
+    background: #0d47a1; /* Dark blue background for preview area */
+    color: #fff; /* White text for readability */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: none;
+  }
+  

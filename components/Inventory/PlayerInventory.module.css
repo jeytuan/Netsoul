@@ -1,0 +1,32 @@
+/* PlayerInventory.module.css */
+.container {
+    background: #212121;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;  /* Adjust based on your layout requirements */
+    max-width: 600px; /* Adjust based on your layout requirements */
+    align-self: center; /* Center the container */
+}
+
+.title {
+    color: #1de9b6;
+    margin-bottom: 20px;
+}
+
+/* Add this to PlayerInventory.module.css */
+.connectButton {
+    background: #00b0ff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.connectButton:hover {
+    background: #0081cb;
+}

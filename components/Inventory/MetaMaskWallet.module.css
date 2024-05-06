@@ -1,0 +1,27 @@
+/* MetaMaskWallet.module.css */
+.container {
+    background: #212121;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    color: #1de9b6;
+}
+
+.testButton {
+    background: #00b0ff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.testButton:hover {
+    background: #0081cb;
+}

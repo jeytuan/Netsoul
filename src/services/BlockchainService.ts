@@ -1,12 +1,12 @@
 // services/BlockchainService.ts
 
-import { JsonRpcProvider, Wallet, Contract, formatUnits, ethers } from 'ethers';
+import { JsonRpcProvider, Wallet, Contract, formatUnits, ethers, ContractFactory } from 'ethers';
+import solc from 'solc'; // Make sure to install solc if not already installed
 
 // Type guard to check if error is of type Error
 function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
-  
 
 type ContractInteractionResult = {
   success: boolean;
@@ -15,17 +15,60 @@ type ContractInteractionResult = {
 };
 
 class BlockchainService {
-  provider: JsonRpcProvider;
-  signer?: Wallet;
+  private provider: JsonRpcProvider;
+  private signer?: Wallet;
 
-  constructor(rpcUrl: string) {
+  constructor(rpcUrl: string, privateKey: string) {
     this.provider = new JsonRpcProvider(rpcUrl);
-    this.setSigner();
+    this.signer = new Wallet(privateKey, this.provider);
   }
 
-  setSigner() {
-    const privateKey = 'your-private-key'; // Replace with your private key
-    this.signer = new Wallet(privateKey, this.provider);
+  async compileSolidity(sourceCode: string): Promise<ContractInteractionResult> {
+    try {
+      const input = {
+        language: 'Solidity',
+        sources: {
+          'contract.sol': {
+            content: sourceCode,
+          },
+        },
+        settings: {
+          outputSelection: {
+            '*': {
+              '*': ['*'],
+            },
+          },
+        },
+      };
+      const output = JSON.parse(solc.compile(JSON.stringify(input)));
+      return { success: true, data: output };
+    } catch (error) {
+      return { success: false, error: isError(error) ? error.message : "Compilation failed" };
+    }
+  }
+
+  async deployContract(bytecode: string, abi: any): Promise<ContractInteractionResult> {
+    if (!this.signer) {
+      return { success: false, error: "Signer not set" };
+    }
+    try {
+      const contractFactory = new ContractFactory(abi, bytecode, this.signer);
+      const contract = await contractFactory.deploy();
+      // Wait for the deployment transaction to be mined (assuming a method exists)
+      // await someMethodToWaitForDeployment(contractFactory); 
+      // Access the contract address after successful deployment
+      const contractAddress = await contract.getAddress();
+      return { success: true, data: contractAddress };
+    } catch (error) {
+      return { success: false, error: isError(error) ? error.message : "Deployment failed" };
+    }
+  }
+  
+  
+
+  async simulateTransaction(bytecode: Buffer): Promise<ContractInteractionResult> {
+    // Placeholder for actual simulation logic
+    return { success: true, data: "Simulation successful" };
   }
 
   async getBlockNumber(): Promise<ContractInteractionResult> {
@@ -33,52 +76,35 @@ class BlockchainService {
       const blockNumber = await this.provider.getBlockNumber();
       return { success: true, data: blockNumber };
     } catch (error) {
-      // Ensure error is of type Error before accessing the message
-      const message = (error instanceof Error) ? error.message : 'An unknown error occurred';
-      return { success: false, error: message };
+      return { success: false, error: isError(error) ? error.message : 'An unknown error occurred' };
     }
   }
 
   async getGasPrice(): Promise<ContractInteractionResult> {
     try {
-        const gasPrice = (await this.provider.getFeeData()).gasPrice;
-
-        if (gasPrice === null) {
-            // Handle null case (e.g., throw an error or return a default value)
-            throw new Error('Gas price not available on this network');
-        }
-
-        return { success: true, data: formatUnits(gasPrice, 'gwei') };
+      const feeData = await this.provider.getFeeData(); // Updated method to get fee data
+      return { success: true, data: formatUnits(feeData.gasPrice!, 'gwei') }; // Use `!` to assert non-null
     } catch (error) {
-      const message = (error instanceof Error) ? error.message : 'An unknown error occurred';
-      return { success: false, error: message };
+      return { success: false, error: isError(error) ? error.message : 'An unknown error occurred' };
     }
   }
 
-  // Add more methods for different blockchain interactions, such as:
-  // - Sending transactions
-  // - Querying smart contract state
-  // - Listening for events
-
-  // Example smart contract interaction
-  async getContractValue(contractAddress: string, abi: any, methodName: string, ...params: any[]): Promise<ContractInteractionResult> {
+  async getContractValue(contractAddress: string, abi: any, methodName: string, params: any[]): Promise<ContractInteractionResult> {
     try {
-      const contract = new ethers.Contract(contractAddress, abi, this.provider);
+      const contract = new Contract(contractAddress, abi, this.signer || this.provider);
       const data = await contract[methodName](...params);
       return { success: true, data };
     } catch (error) {
-
-      const message = isError(error) ? error.message : 'An unknown error occurred';
-      return { success: false, error: message };
+      return { success: false, error: isError(error) ? error.message : 'An unknown error occurred' };
     }
   }
-  
 }
 
 // Export an instance of the service
-// You would replace 'rpc-url-here' with the actual RPC URL of your blockchain network
-const infuraUrl = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'; // Replace with your actual project ID
-export const blockchainService = new BlockchainService(infuraUrl);
+const rpcUrl = 'https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID'; // Replace with actual project ID
+const privateKey = process.env.PRIVATE_KEY || 'your-private-key'; // IMPORTANT: Use environment variable or secure storage in production
+export const blockchainService = new BlockchainService(rpcUrl, privateKey);
+
 
 
 /**

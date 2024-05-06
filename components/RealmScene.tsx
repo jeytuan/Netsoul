@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Phaser from 'phaser';
 
 import { WarpMenu } from './WarpMenu';
-import { BuildingPlant } from './BuildingPlant';
+// import { BuildingPlant } from './BuildingPlant';
 // import TestScene from './TestScene'; // Legacy Module
 import TestSuiteManager from './TestStudio/TestSuiteManager'; // Import TestSuiteManager
 
@@ -70,7 +70,7 @@ const RealmScene = () => {
     };
   }, []);
 
-  return (
+   return (
     <>
       <div id="mev-realm-container" className="relative z-10">
         {/* Island concept image and other game UI elements */}
@@ -88,4 +88,4 @@ const RealmScene = () => {
   );
 };
 
-export default RealmScene;
+export default RealmScene; 

@@ -4,6 +4,9 @@ import Phaser from 'phaser';
 
 import TestSuiteManager from './TestStudio/TestSuiteManager';
 import BuildingPlant from './BuildingPlant';
+import Playground from './Playground/Playground';
+import PlayerInventory from './Inventory/PlayerInventory';
+import SmartContractWorkshop from './SmartContractWorkshop/SmartContractWorkshop'
 
 const RealmScene = () => {
   const [currentView, setCurrentView] = useState('default'); // Default view when no node is selected
@@ -31,7 +34,7 @@ const RealmScene = () => {
           setupNode(this, 922, 378, 'SmartContractWorkshop');
           setupNode(this, 745, 552, 'PlayerInventory');
           setupNode(this, 316, 527, 'QuestLog');
-          setupNode(this, 164, 395, 'AIPlayground');
+          setupNode(this, 164, 395, 'Playground');
           setupNode(this, 117, 302, 'EducationalLibrary');
           setupNode(this, 263, 160, 'BuildingPlant');
         }
@@ -71,6 +74,14 @@ const RealmScene = () => {
         return <TestSuiteManager />;
       case 'BuildingPlant':
         return <BuildingPlant />;
+      case 'Playground':
+        return <Playground />;
+      case 'PlayerInventory':
+        return <PlayerInventory />;
+      case 'SmartContractWorkshop':
+        return <SmartContractWorkshop />;
+  
+        
       // Add more cases as needed
       default:
         return <div>Select a node to view details.</div>;
