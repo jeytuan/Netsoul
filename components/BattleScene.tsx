@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Phaser from 'phaser';
 
+interface Tile {
+  x: number;
+  y: number;
+  accessible: boolean;
+}
+
 const BattleScene: React.FC = () => {
   const [currentBoss, setCurrentBoss] = useState('SKALE');
 
   useEffect(() => {
-    let spriteSKALE: Phaser.GameObjects.Sprite;
-    let spriteTRON: Phaser.GameObjects.Sprite;
-    let spriteEtherlink: Phaser.GameObjects.Sprite;
+    let spriteTRON: Phaser.Physics.Arcade.Sprite | null = null;
+    let spriteSKALE: Phaser.Physics.Arcade.Sprite | null = null;
 
     const game = new Phaser.Game({
       type: Phaser.AUTO,
@@ -18,16 +23,17 @@ const BattleScene: React.FC = () => {
         default: 'arcade',
         arcade: {
           gravity: { y: 0, x: 0 },
-          debug: false,
+          debug: true
         },
+      },
+      input: {
+        keyboard: true
       },
       scene: {
         preload: function (this: Phaser.Scene) {
-          // Preload assets
           this.load.image('grid', '/images/game/platforms/grid.png');
           this.load.image('SKALE', '/images/game/bosses/SKALE.png');
           this.load.image('TRON', '/images/game/bosses/TRON.png');
-          this.load.image('Etherlink', '/images/game/bosses/Etherlink1_front.png');
         },
         create: function (this: Phaser.Scene) {
           const cols = 6;
@@ -35,50 +41,56 @@ const BattleScene: React.FC = () => {
           const cellWidth = this.scale.width / cols;
           const cellHeight = this.scale.height / rows;
 
-          // Adjust Y-offset for SKALE
-          const yOffsetSKALE = -80;
-          // Adjust Y-offset for TRON to align with SKALE and move down by 20px
-          const yOffsetTRON = yOffsetSKALE + 20;
+          const xOffset = cellWidth / 2;
+          const yOffset = cellHeight / 2;  
 
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-          // TRON avatar
-          spriteTRON = this.add.sprite(cellWidth * 1.5, (cellHeight * 1.5) + yOffsetTRON, 'TRON').setScale(0.25 * 1.2).setInteractive();
+          spriteTRON = this.physics.add.sprite(cellWidth * 1.5 + xOffset, cellHeight * 1.5 + yOffset, 'TRON').setScale(0.20).setInteractive();
+          spriteSKALE = this.physics.add.sprite(cellWidth * 4.5 + xOffset, cellHeight * 0.5 + yOffset, 'SKALE').setScale(0.52).setInteractive();
 
-          // Boss sprites
-          spriteSKALE = this.add.sprite(cellWidth * 4.5, (cellHeight * 1.5) + yOffsetSKALE, 'SKALE').setScale(0.6).setInteractive().setVisible(currentBoss === 'SKALE');
-          spriteEtherlink = this.add.sprite(cellWidth * 4.5, (cellHeight * 2.5) + yOffsetSKALE, 'Etherlink').setScale(0.6).setInteractive().setVisible(currentBoss === 'Etherlink');
+          const playerAllowedTiles: Tile[] = [
+            { x: cellWidth * 0.5 + xOffset, y: cellHeight * 0.5 + yOffset, accessible: true },
+            // More tiles definitions
+          ];
 
-          // Make sprites interactive
-          spriteSKALE.on('pointerdown', () => setCurrentBoss('SKALE'));
-          spriteEtherlink.on('pointerdown', () => setCurrentBoss('Etherlink'));
+          const moveSprite = (sprite: Phaser.GameObjects.Sprite, newX: number, newY: number) => {
+            const tile = playerAllowedTiles.find(tile => tile.x === newX && tile.y === newY);
+            if (tile && tile.accessible) {
+              sprite.x = newX;
+              sprite.y = newY;
+            }
+          };
 
-          // Update visibility based on current boss
-          this.events.on('update', () => {
-            spriteTRON.setVisible(true); // TRON is always visible
-            spriteSKALE.setVisible(currentBoss === 'SKALE');
-            spriteEtherlink.setVisible(currentBoss === 'Etherlink');
-          });
+          // Setup keyboard controls
+          // Setup keyboard controls
+          if (this.input && this.input.keyboard) {
+            const cursors = this.input.keyboard.createCursorKeys();
+            this.input.keyboard.on('keydown-LEFT', () => {
+              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x - cellWidth, spriteTRON.y);
+            });
+            this.input.keyboard.on('keydown-RIGHT', () => {
+              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x + cellWidth, spriteTRON.y);
+            });
+            this.input.keyboard.on('keydown-UP', () => {
+              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x, spriteTRON.y - cellHeight);
+            });
+            this.input.keyboard.on('keydown-DOWN', () => {
+              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x, spriteTRON.y + cellHeight);
+            });
+          }
+
+spriteTRON?.setCollideWorldBounds(true);
+spriteSKALE?.setCollideWorldBounds(true);
+
         }
       },
     });
-
-    return () => {
-      if (game) {
-        game.destroy(true);
-      }
-    };
+    
+    return () => game.destroy(true);
   }, [currentBoss]);
 
-  return (
-    <div>
-      <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-        <button onClick={() => setCurrentBoss('SKALE')}>SKALE Boss</button>
-        <button onClick={() => setCurrentBoss('Etherlink')}>Etherlink Boss</button>
-      </div>
-      <div id="phaser-game-container" />
-    </div>
-  );
-};
-
-export default BattleScene;
+  return <div id="phaser-game-container" />;
+  };
+  
+  export default BattleScene;
