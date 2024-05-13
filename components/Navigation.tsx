@@ -22,11 +22,7 @@ const Navigation = () => {
                   Home
                 </a>
               </li>
-              <li>
-                <Link href="/TestNet">
-                  <span className="cursor-pointer text-gray-300 hover:text-white">TestNet</span>
-                </Link>
-              </li>
+              
               {/* Other navigation items... */}
               <li>
                 <span onClick={handleLogout} className="cursor-pointer text-gray-300 hover:text-white">
