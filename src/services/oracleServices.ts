@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'; // Ensure you have node-fetch installed
+import axios from 'axios';
 
 // Define an interface for expected oracle data
 interface OracleData {
@@ -25,25 +25,15 @@ export const fetchOracleData = async (oracleType: 'CoinGecko' | 'Chainlink'): Pr
   const oracleConfig = ORACLES[oracleType];
 
   try {
-    const response = await fetch(oracleConfig.url, {
+    const response = await axios({
+      url: oracleConfig.url,
       method: oracleConfig.method,
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    if (!response.ok) {
-      let errorMessage = 'An unknown error occurred';
-      if (response.status >= 400 && response.status < 500) {
-        errorMessage = 'Client-side error occurred.'; // Potential for more specific handling based on status code
-      } else if (response.status >= 500) {
-        errorMessage = 'Server-side error occurred.';
-      }
-      throw new Error(`Error fetching data from ${oracleType}: ${errorMessage}`);
-    }
-
-    // Explicitly cast the returned data to the OracleData type
-    const data = await response.json() as OracleData;
+    const data = response.data;
 
     // Process and return the data in the expected format
     if (oracleType === 'CoinGecko') {
