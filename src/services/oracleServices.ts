@@ -1,17 +1,18 @@
-// src/services/oracleService.ts
+import fetch from 'node-fetch'; // Ensure you have node-fetch installed
 
-// Define an interface for expected oracle data (replace with actual structure)
+// Define an interface for expected oracle data
 interface OracleData {
   ethereum: {
     usd: number;
+    usd_24h_change?: number;
   };
-  // Add other properties as needed
+  gasPrice?: number;
 }
 
 // Oracle configuration
 const ORACLES: { [key: string]: { url: string; method: string } } = {
   CoinGecko: {
-    url: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd',
+    url: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_24hr_change=true',
     method: 'GET',
   },
   Chainlink: {
@@ -41,14 +42,30 @@ export const fetchOracleData = async (oracleType: 'CoinGecko' | 'Chainlink'): Pr
       throw new Error(`Error fetching data from ${oracleType}: ${errorMessage}`);
     }
 
-    const data = await response.json();
-    // You may want to format or process this data further before returning
-    return data;
+    // Explicitly cast the returned data to the OracleData type
+    const data = await response.json() as OracleData;
+
+    // Process and return the data in the expected format
+    if (oracleType === 'CoinGecko') {
+      return {
+        ethereum: {
+          usd: data.ethereum.usd,
+          usd_24h_change: data.ethereum.usd_24h_change,
+        },
+      };
+    } else if (oracleType === 'Chainlink') {
+      return {
+        ethereum: {
+          usd: data.ethereum.usd,
+        },
+        gasPrice: data.gasPrice,
+      };
+    } else {
+      throw new Error('Unsupported oracle type');
+    }
   } catch (error) {
-    // It's important to ensure that the error is an instance of Error before trying to access its 'message' property
     const message = error instanceof Error ? error.message : 'An unknown error occurred';
     console.error(`fetchOracleData error with ${oracleType}:`, message);
     throw new Error(message);
   }
 };
-

@@ -2,12 +2,13 @@ import { TestResult } from '../../types/types';
 import { fetchOracleData } from '../../services/oracleServices';
 
 interface OracleData {
-  ethereum?: {
+  ethereum: {
     usd: number;
-    usd_24h_change?: number;
+    usd_24h_change?: number;  // Optional since it might not be provided by all oracles
   };
-  gasPrice?: number; // Gas price for Chainlink
+  gasPrice?: number;  // Assuming Chainlink might return this or similar
 }
+
 
 const dataIsValid = (data: OracleData, oracleType: 'CoinGecko' | 'Chainlink'): boolean => {
   if (oracleType === 'CoinGecko') {
@@ -23,7 +24,7 @@ export const testOracleIntegration = async (
   networkName: string
 ): Promise<TestResult> => {
   try {
-    const data = await fetchOracleData(oracleType); // fetchOracleData needs to handle networkName if necessary
+    const data = await fetchOracleData(oracleType); // Assume this fetches all necessary data based on `oracleType`
     if (dataIsValid(data, oracleType)) {
       const priceChange = data.ethereum?.usd_24h_change?.toFixed(2) || 'N/A';
       const gasPrice = data.gasPrice?.toFixed(2) || 'N/A';
