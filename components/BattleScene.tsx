@@ -14,7 +14,7 @@ const BattleScene: React.FC = () => {
     let spriteTRON: Phaser.Physics.Arcade.Sprite | null = null;
     let spriteSKALE: Phaser.Physics.Arcade.Sprite | null = null;
 
-    const game = new Phaser.Game({
+    const gameConfig = {
       type: Phaser.AUTO,
       width: 1300,
       height: 750,
@@ -23,11 +23,8 @@ const BattleScene: React.FC = () => {
         default: 'arcade',
         arcade: {
           gravity: { y: 0, x: 0 },
-          debug: true
+          debug: true,
         },
-      },
-      input: {
-        keyboard: true
       },
       scene: {
         preload: function (this: Phaser.Scene) {
@@ -42,55 +39,100 @@ const BattleScene: React.FC = () => {
           const cellHeight = this.scale.height / rows;
 
           const xOffset = cellWidth / 2;
-          const yOffset = cellHeight / 2;  
+          const yOffset = cellHeight / 2;
 
           this.add.image(0, 0, 'grid').setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-          spriteTRON = this.physics.add.sprite(cellWidth * 1.5 + xOffset, cellHeight * 1.5 + yOffset, 'TRON').setScale(0.20).setInteractive();
-          spriteSKALE = this.physics.add.sprite(cellWidth * 4.5 + xOffset, cellHeight * 0.5 + yOffset, 'SKALE').setScale(0.52).setInteractive();
+          spriteTRON = this.physics.add.sprite(cellWidth / 2, cellHeight / 2, 'TRON').setScale(0.20).setInteractive();
+          spriteSKALE = this.physics.add.sprite(cellWidth * 4.5, cellHeight * 0.5, 'SKALE').setScale(0.52).setInteractive();
 
-          const playerAllowedTiles: Tile[] = [
-            { x: cellWidth * 0.5 + xOffset, y: cellHeight * 0.5 + yOffset, accessible: true },
-            // More tiles definitions
-          ];
+          // Define the grid layout with explicit type
+          const grid: Tile[] = [];
+          for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+              const x = col * cellWidth + xOffset;
+              const y = row * cellHeight + yOffset;
+              grid.push({ x, y, accessible: col < 3 });
+            }
+          }
+          console.log('Grid initialized:', grid);
 
-          const moveSprite = (sprite: Phaser.GameObjects.Sprite, newX: number, newY: number) => {
-            const tile = playerAllowedTiles.find(tile => tile.x === newX && tile.y === newY);
-            if (tile && tile.accessible) {
-              sprite.x = newX;
-              sprite.y = newY;
+          // Function to check if a tile is within bounds and accessible
+          const isTileAccessible = (x: number, y: number): boolean => {
+            const tile = grid.find(tile => Math.abs(tile.x - x) < cellWidth / 2 && Math.abs(tile.y - y) < cellHeight / 2);
+            return !!tile && tile.accessible;
+          };
+
+          // Function to move the sprite within the grid
+          const moveSprite = (sprite: Phaser.GameObjects.Sprite, direction: string) => {
+            let newX = sprite.x;
+            let newY = sprite.y;
+
+            switch (direction) {
+              case 'LEFT':
+                newX -= cellWidth;
+                break;
+              case 'RIGHT':
+                newX += cellWidth;
+                break;
+              case 'UP':
+                newY -= cellHeight;
+                break;
+              case 'DOWN':
+                newY += cellHeight;
+                break;
+              default:
+                break;
+            }
+
+            newX = Math.round(newX);
+            newY = Math.round(newY);
+
+            console.log(`Trying to move sprite to x: ${newX}, y: ${newY}`);
+            if (isTileAccessible(newX, newY)) {
+              sprite.setPosition(newX, newY);
+              console.log(`Moved sprite to x: ${newX}, y: ${newY}`);
+            } else {
+              console.log(`Tile at x: ${newX}, y: ${newY} is not accessible or out of bounds`);
             }
           };
 
           // Setup keyboard controls
-          // Setup keyboard controls
           if (this.input && this.input.keyboard) {
             const cursors = this.input.keyboard.createCursorKeys();
             this.input.keyboard.on('keydown-LEFT', () => {
-              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x - cellWidth, spriteTRON.y);
+              console.log('Left key pressed');
+              if (spriteTRON) moveSprite(spriteTRON, 'LEFT');
             });
             this.input.keyboard.on('keydown-RIGHT', () => {
-              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x + cellWidth, spriteTRON.y);
+              console.log('Right key pressed');
+              if (spriteTRON) moveSprite(spriteTRON, 'RIGHT');
             });
             this.input.keyboard.on('keydown-UP', () => {
-              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x, spriteTRON.y - cellHeight);
+              console.log('Up key pressed');
+              if (spriteTRON) moveSprite(spriteTRON, 'UP');
             });
             this.input.keyboard.on('keydown-DOWN', () => {
-              if (spriteTRON) moveSprite(spriteTRON, spriteTRON.x, spriteTRON.y + cellHeight);
+              console.log('Down key pressed');
+              if (spriteTRON) moveSprite(spriteTRON, 'DOWN');
             });
           }
 
-spriteTRON?.setCollideWorldBounds(true);
-spriteSKALE?.setCollideWorldBounds(true);
-
-        }
+          spriteTRON?.setCollideWorldBounds(true);
+          spriteSKALE?.setCollideWorldBounds(true);
+        },
+        update: function (this: Phaser.Scene) {
+          // Additional update logic if needed
+        },
       },
-    });
-    
+    };
+
+    const game = new Phaser.Game(gameConfig);
+
     return () => game.destroy(true);
   }, [currentBoss]);
 
   return <div id="phaser-game-container" />;
-  };
-  
-  export default BattleScene;
+};
+
+export default BattleScene;
