@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,37 +15,29 @@
     "incremental": true,
     "baseUrl": ".", // Set the base URL to the root of the project
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/utils/*": [
-        "src/utils/*"
-      ],
-      "@/services/*": [
-        "src/services/*"
-      ],
-      "@/tests/*": [
-        "src/tests/*"
-      ],
-      "@/*": [
-        "src/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/services/*": ["src/services/*"],
+      "@/tests/*": ["src/tests/*"],
+      "@/*": ["src/*"]
     },
+    "types": [
+      "node",
+      "mocha",
+      "chai",
+      "sinon",
+      "sinon-chai",
+      "@sinonjs/fake-timers",
+      "@nomiclabs/hardhat-ethers",
+      "@nomiclabs/hardhat-waffle",
+      "@typechain/hardhat"
+    ],
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
