@@ -26,6 +26,7 @@
     "ethereumjs-vm": "^4.2.0",
     "https-browserify": "^1.0.0",
     "leaflet": "^1.9.4",
+    "monaco-editor": "^0.50.0",
     "mongoose": "^8.2.4",
     "next": "^14.1.4",
     "node-fetch": "^3.3.2",

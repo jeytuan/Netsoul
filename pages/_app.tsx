@@ -1,7 +1,8 @@
 import 'leaflet/dist/leaflet.css';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import '../app/globals.css';
 import { useEffect } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -11,7 +12,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <UserProvider>
+      <Component {...pageProps} />
+    </UserProvider>
+  );
 }
 
 export default MyApp;

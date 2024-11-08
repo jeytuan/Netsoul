@@ -1,21 +1,25 @@
-// pages/index.tsx
-
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Navigation from '../components/Navigation';
-import MusicPlayer from '../components/MusicPlayer';
 import WallpaperEngine from '../components/WallpaperEngine';
-import React from 'react';
-
-// Dynamically import BattleScene with SSR disabled
-const BattleScene = dynamic(() => import('../components/BattleScene'), { ssr: false });
-
-// Dynamically import RealmScene with SSR disabled
-const RealmScene = dynamic(() => import('../components/RealmScene'), { ssr: false });
+import React, { useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Home: NextPage = () => {
-  const [activeScene, setActiveScene] = React.useState<string>('none');
+  const { user } = useUser();
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleLogin = () => {
+    setShowLogin(true);
+    setShowRegister(false);
+  };
+
+  const handleRegister = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
@@ -26,40 +30,60 @@ const Home: NextPage = () => {
 
       <Navigation />
 
-      {/* Login Button */}
-      <div className="p-4 flex justify-center">
-        <button onClick={() => window.location.href = '/api/auth/login'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Log In
-        </button>
+      <div className="flex flex-col items-center">
+        <WallpaperEngine />
+
+        <div className="mt-4">
+          {!user && (
+            <>
+              <button
+                onClick={handleLogin}
+                className="mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Log In
+              </button>
+              <button
+                onClick={handleRegister}
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Register
+              </button>
+            </>
+          )}
+          {user && (
+            <p>Welcome, {user.name}</p>
+          )}
+        </div>
+
+        {showLogin && (
+          <div className="mt-4 w-full flex justify-center">
+            {/* Embedding Auth0 Login Panel */}
+            <iframe
+              src="/api/auth/login"
+              className="w-full h-screen bg-gray-800"
+              frameBorder="0"
+              title="Login"
+            />
+          </div>
+        )}
+
+        {showRegister && (
+          <div className="mt-4 w-full flex justify-center">
+            {/* Embedding Auth0 Register Panel */}
+            <iframe
+              src="/api/auth/login"
+              className="w-full h-screen bg-gray-800"
+              frameBorder="0"
+              title="Register"
+            />
+          </div>
+        )}
       </div>
 
-      {activeScene === 'none' && (
-        <>
-          {/* Wallpaper and intro content for pre-auth splash page */}
-          <WallpaperEngine />
-          {/* Other splash content */}
-        </>
-      )}
-
-      <main className="flex-1 relative overflow-hidden">
-        {/* Scene navigation buttons */}
-        <div className="p-4 flex justify-center">
-          <button onClick={() => setActiveScene('battle')} className="mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Battle
-          </button>
-          <button onClick={() => setActiveScene('realm')} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Realm 
-          </button>
-        </div>
-
-        {/* Phaser game container */}
-        <div id="phaser-game-container" className="flex justify-center items-center">
-          {activeScene === 'battle' && <BattleScene />}
-          {activeScene === 'realm' && <RealmScene />}
-        </div>
-      </main>
-
-      <MusicPlayer />
+      <div className="mt-8">
+        <p className="text-center text-lg">Music Player</p>
+        {/* Insert your Music Player component here */}
+      </div>
     </div>
   );
 };
